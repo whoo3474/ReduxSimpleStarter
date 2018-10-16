@@ -6,6 +6,7 @@ import YTSerch from 'youtube-api-search';
 
 import reducers from './reducers';
 import SerchBar from './components/serch_bar'
+import VideoList from './components/video_list';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
@@ -18,15 +19,18 @@ class App extends Component{
       videos:[]
     };
 
-    YTSerch({key:API_KEY, term:'family sharks'},(videos)=>{
+    YTSerch({key:API_KEY, term:'surfboards'},(videos)=>{
       this.setState({videos});
     });
   }
   render(){
     return(
-    <Provider store={createStoreWithMiddleware(reducers)}>
+    //<Provider store={createStoreWithMiddleware(reducers)}>
+    <div>
       <SerchBar />
-    </Provider>    
+      <VideoList videos={this.state.videos} />
+      </div>
+    //</Provider>    
     )
   }
 }
