@@ -19,7 +19,7 @@ class App extends Component{
       videos:[]
     };
 
-    YTSerch({key:API_KEY, term:'surfboards'},(videos)=>{
+    YTSerch({key:API_KEY, term:'pinkfong'},(videos)=>{
       this.setState({videos});
     });
   }
