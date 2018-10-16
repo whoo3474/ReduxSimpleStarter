@@ -17,11 +17,15 @@ class App extends Component{
   constructor(props){
     super(props);
     this.state = {
-      videos:[]
+      videos:[],
+      selectedVideo : null
     };
 
     YTSerch({key:API_KEY, term:'pinkfong'},(videos)=>{
-      this.setState({videos});
+      this.setState({
+        videos:videos,
+        selectedVideo:videos[0]
+      });
     });
   }
   render(){
@@ -29,8 +33,12 @@ class App extends Component{
     //<Provider store={createStoreWithMiddleware(reducers)}>
     <div>
       <SerchBar />
-      <VideoDetail video={this.state.videos[0]}/>
-      <VideoList videos={this.state.videos} />
+      <VideoDetail video={this.state.selectedVideo}/>
+      <VideoList 
+        onVideoSelect={selectedVideo=>this.setState({
+          selectedVideo
+        })}
+        videos={this.state.videos} />
       </div>
     //</Provider>    
     )
