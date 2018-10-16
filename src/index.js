@@ -7,6 +7,7 @@ import YTSerch from 'youtube-api-search';
 import reducers from './reducers';
 import SerchBar from './components/serch_bar'
 import VideoList from './components/video_list';
+import VideoDetail from './components/video_detail';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
@@ -28,6 +29,7 @@ class App extends Component{
     //<Provider store={createStoreWithMiddleware(reducers)}>
     <div>
       <SerchBar />
+      <VideoDetail video={this.state.videos[0]}/>
       <VideoList videos={this.state.videos} />
       </div>
     //</Provider>    
