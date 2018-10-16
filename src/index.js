@@ -20,19 +20,23 @@ class App extends Component{
       videos:[],
       selectedVideo : null
     };
+    this.videoSearch('pinkfong');
+  }
 
-    YTSerch({key:API_KEY, term:'pinkfong'},(videos)=>{
+  videoSearch(term){
+    YTSerch({key:API_KEY, term:term},(videos)=>{
       this.setState({
         videos:videos,
         selectedVideo:videos[0]
       });
     });
   }
+
   render(){
     return(
     //<Provider store={createStoreWithMiddleware(reducers)}>
     <div>
-      <SerchBar />
+      <SerchBar onSearchTermChange={term => this.videoSearch(term)} />
       <VideoDetail video={this.state.selectedVideo}/>
       <VideoList 
         onVideoSelect={selectedVideo=>this.setState({
