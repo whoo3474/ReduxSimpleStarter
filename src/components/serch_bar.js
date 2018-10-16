@@ -7,20 +7,19 @@ class SerchBar extends Component{
     this.state={term : ''};
   }
  
-  
+
   render(){
     return (
-      <input onChange={this.onInputChange}/>
+      <div className="search-bar">
+        <input onChange={(event)=>
+          this.setState({
+            term:event.target.value
+          })}
+        />
+      </div>
     )
   }
 
-  onInputChange(e){
-    this.setState({
-      term:e.target.value
-    })
-    console.log(e.target.value);
-
-  }
 }
 
 export default SerchBar;
