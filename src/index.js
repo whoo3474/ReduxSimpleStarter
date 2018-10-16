@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -11,16 +11,24 @@ const createStoreWithMiddleware = applyMiddleware()(createStore);
 
 const API_KEY='AIzaSyBnpaJOsm8xiMvS-rABQLAYJYO45V4adVQ';
 
-YTSerch({key:API_KEY, term:'serfboards'},function(data){
-  console.log(data);
-});
+class App extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      videos:[]
+    };
 
-const App = () =>{
-  return(
-  <Provider store={createStoreWithMiddleware(reducers)}>
-   <SerchBar />
-  </Provider>    
-  )
+    YTSerch({key:API_KEY, term:'family sharks'},(videos)=>{
+      this.setState({videos});
+    });
+  }
+  render(){
+    return(
+    <Provider store={createStoreWithMiddleware(reducers)}>
+      <SerchBar />
+    </Provider>    
+    )
+  }
 }
 
 ReactDOM.render(<App/>, document.querySelector('.container'));
